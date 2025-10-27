@@ -1,7 +1,9 @@
-import { env } from '@/env'
+import { cn, getEnv } from '@/lib/utils'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({ component: App })
+
+const env = getEnv()
 
 function App() {
   return (
@@ -10,7 +12,9 @@ function App() {
       <p className="text-lg text-center">Fejlesztés alatt...</p>
       <p>
         Az app, amit nézel{' '}
-        <span className="italic text-muted-foreground">{env.VITE_APP_ENV}</span>{' '}
+        <span className={cn('italic', env.color)}>
+          {env.label} <span className="font-bold">{env.abbreviation}</span>
+        </span>{' '}
         környezetben fut
       </p>
     </div>
